@@ -1,4 +1,4 @@
-# SCRUD-CS ︻デ═一 - - - -
+# SCRUD-CS ︻デ═一
 SCRUD for Counter Strike
 
 The SCRUD System Using jQuery, JSON and the DataTables Plug-in. The acronym SCRUD refers to the basic manipulation functions that the user needs to work with the available data: Search, Create, Read, Update and Delete.
