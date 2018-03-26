@@ -24,6 +24,8 @@ h1, h2 {
   font-size: 1rem;
 }
 
+
+
 a {
   cursor: pointer;
   -webkit-transition: all 0.2s ease 0s;
@@ -125,12 +127,20 @@ h1 {
   margin: 0 0 25px 0;
 }
 
-h2.ice_cold{
-  font-weight: 700;
-  font-size: 1.5rem;
-  float: right;
+#page_container h1{
+	text-align:center;
+}
+
+h2.averages{
+	font-weight: 700;
+	font-size: 1.5rem;
+	color: #ddf8c6;
+}
+
+h3.averages{
+  font-weight: 600;
+  font-size: 1.2rem;
   color: #1597d6;
-  margin: 0 0 25px 0;
 }
 
 button.button {
@@ -699,4 +709,46 @@ table.datatable tbody td.functions .function_buttons span {
     -webkit-transform: rotate(359deg);
     transform:         rotate(359deg);
   }
+}
+/* Averages Group ------------------------------------------------------------------------------ */
+/* .averages_group{
+	border:2px solid black;
+	display:inline-block;
+	float:right;
+	margin: 0 25% 1% 0;
+	padding:1%;
+} */
+ 
+.arrow_box {
+	position: relative;
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+	width:50%;
+	text-align:center;
+	left:25%;
+	padding: 1%;
+
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #88b7d5;
+	border-width: 110px;
+	margin-left: -110px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #c2e1f5;
+	border-width: 116px;
+	margin-left: -116px;
 }

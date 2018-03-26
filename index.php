@@ -19,29 +19,15 @@
 
       <h1>Sensitivities</h1>
 	  
-	  <h2 class="ice_cold" id="average_sens">Avg Sensitivity(
-	  	<?php 
-		include ('conn.php');
-		 // Connect to database
-		$db_connection = mysqli_connect($db_server, $db_username, $db_password, $db_name);
-
-		// Get average of sensitivities
-		// Round(AVG(column),X) sets the decimal point limit.
-		$query="SELECT ROUND(AVG(sensitivity_val),2) AS Average FROM sensitivities";
-		$query = mysqli_query($db_connection, $query);
-		if (!$query){
-		  $result  = 'error';
-		  $message = 'query error'; 
-		  echo $result;
-		  echo $message;
-		} else {
-			$result  = 'success';
-			$message = 'query success';  
-			while ($sensitivity = mysqli_fetch_array($query)){
-				echo $sensitivity['Average'];
-			}
-		}	
-		?>)</h2>
+	  
+	<div class="arrow_box">
+		<h2 class="averages">Averages:</h2><br />
+		<h3 class="averages">Avg Sensitivity ( <?php include ('sensavg.php');?> )</h3><br />
+		<h3 class="averages" >Avg KPD ( <?php include ('kpdavg.php');?> )</h3><br />
+		<h3 class="averages" >Avg Headshot % ( <?php include ('hsavg.php');?> )</h3><br />
+	</div>
+	
+	
 
       <button type="button" class="button" id="add_sensitivity">Add sensitivity</button>
 
@@ -54,9 +40,15 @@
             <th>KPD</th>
             <th>Kills</th>
 			<th>Deaths</th>
-			<th>Headshot (%)</th>
+			<th>HS (#)</th>
 			<th>HPK (%)</th>
-			<th>Accuracy (%)</th>
+			<th>Acc (%)</th>
+			<th>2k</th>
+			<th>3k</th>
+			<th>4k</th>
+			<th>5k</th>
+			<th>Result</th>
+			<th>Score</th>
 			<th>Map</th>
             <th>Game</th>
 			<th id="comments">Comment</th>
@@ -117,6 +109,47 @@
             <label for="accuracy">Accuracy(%): <span class="required">*</span></label>
             <div class="field_container">
               <input type="number" class="text" name="accuracy" id="accuracy" value="" min="0" max="100" pattern="\d*" maxlength="3" required>
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="twok">2K: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" class="text" name="twok" id="twok" value="" min="0" max="30" pattern="\d*" maxlength="2">
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="threek">3K: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" class="text" name="threek" id="threek" value="" min="0" max="30" pattern="\d*" maxlength="2">
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="fourk">4K: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" class="text" name="fourk" id="fourk" value="" min="0" max="30" pattern="\d*" maxlength="2">
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="fivek">5K: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" class="text" name="fivek" id="fivek" value="" min="0" max="30" pattern="\d*" maxlength="2">
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="result">Win/Loss: <span class="required">*</span></label>
+            <div class="field_container">
+			<div class="field_container">
+				<select name="result" class="text" id="result" value="" required>
+					<option value="win">Win</option>
+					<option value="loss">Loss</option>
+				</select>
+			</div>
+            </div>
+          </div>
+		  <div class="input_container">
+            <label for="score">Score: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="text" class="text" name="score" id="score" value="" required>
             </div>
           </div>
  		  <div class="input_container">

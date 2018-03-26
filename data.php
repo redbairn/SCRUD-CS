@@ -63,6 +63,12 @@ if ($job != ''){
 			"headshot"    => $sensitivity['headshot'],
 			"hpk"    => $sensitivity['hpk'],
 			"accuracy"    => $sensitivity['accuracy'],
+			"twok"    => $sensitivity['twok'],
+			"threek"    => $sensitivity['threek'],
+			"fourk"    => $sensitivity['fourk'],
+			"fivek"    => $sensitivity['fivek'],
+			"result"    => $sensitivity['result'],
+			"score"    => $sensitivity['score'],
 			"map_played"  => $sensitivity['map_played'],
 			"game"  => $sensitivity['game'],
 			"comment"  => $sensitivity['comment'],
@@ -97,6 +103,12 @@ if ($job != ''){
 			"headshot"    => $sensitivity['headshot'],
 			"hpk"    => $sensitivity['hpk'],
 			"accuracy"    => $sensitivity['accuracy'],
+			"twok"    => $sensitivity['twok'],
+			"threek"    => $sensitivity['threek'],
+			"fourk"    => $sensitivity['fourk'],
+			"fivek"    => $sensitivity['fivek'],
+			"result"    => $sensitivity['result'],
+			"score"    => $sensitivity['score'],
 			"map_played"  => $sensitivity['map_played'],
             "comment"  => $sensitivity['comment'],
 			"game"  => $sensitivity['game']
@@ -116,6 +128,12 @@ if ($job != ''){
 	if (isset($_GET['headshot']))   { $query .= "headshot   = '" . mysqli_real_escape_string($db_connection, $_GET['headshot'])   . "', "; }
 	if (isset($_GET['hpk']))   { $query .= "hpk   = '" . mysqli_real_escape_string($db_connection, $_GET['hpk'])   . "', "; }
 	if (isset($_GET['accuracy']))   { $query .= "accuracy   = '" . mysqli_real_escape_string($db_connection, $_GET['accuracy'])   . "', "; }
+	if (isset($_GET['twok']))   { $query .= "twok   = '" . mysqli_real_escape_string($db_connection, $_GET['twok'])   . "', "; }
+	if (isset($_GET['threek']))   { $query .= "threek   = '" . mysqli_real_escape_string($db_connection, $_GET['threek'])   . "', "; }
+	if (isset($_GET['fourk']))   { $query .= "fourk   = '" . mysqli_real_escape_string($db_connection, $_GET['fourk'])   . "', "; }
+	if (isset($_GET['fivek']))   { $query .= "fivek   = '" . mysqli_real_escape_string($db_connection, $_GET['fivek'])   . "', "; }
+	if (isset($_GET['result']))   { $query .= "result   = '" . mysqli_real_escape_string($db_connection, $_GET['result'])   . "', "; }
+	if (isset($_GET['score']))   { $query .= "score   = '" . mysqli_real_escape_string($db_connection, $_GET['score'])   . "', "; }
 	if (isset($_GET['map_played'])) { $query .= "map_played = '" . mysqli_real_escape_string($db_connection, $_GET['map_played']) . "',";   }
     if (isset($_GET['game'])) { $query .= "game = '" . mysqli_real_escape_string($db_connection, $_GET['game']) . "',";   }
 	if (isset($_GET['comment'])) { $query .= "comment = '" . mysqli_real_escape_string($db_connection, $_GET['comment']) . "'";   }
@@ -143,7 +161,13 @@ if ($job != ''){
 		if (isset($_GET['headshot']))   { $query .= "headshot   = '" . mysqli_real_escape_string($db_connection, $_GET['headshot'])   . "', "; }
 		if (isset($_GET['hpk']))   { $query .= "hpk   = '" . mysqli_real_escape_string($db_connection, $_GET['hpk'])   . "', "; }
 		if (isset($_GET['accuracy']))   { $query .= "accuracy   = '" . mysqli_real_escape_string($db_connection, $_GET['accuracy'])   . "', "; }
-		# Becareful if tge comma that breaks up each value for the update/insert
+		if (isset($_GET['twok']))   { $query .= "twok   = '" . mysqli_real_escape_string($db_connection, $_GET['twok'])   . "', "; }
+		if (isset($_GET['threek']))   { $query .= "threek   = '" . mysqli_real_escape_string($db_connection, $_GET['threek'])   . "', "; }
+		if (isset($_GET['fourk']))   { $query .= "fourk   = '" . mysqli_real_escape_string($db_connection, $_GET['fourk'])   . "', "; }
+		if (isset($_GET['fivek']))   { $query .= "fivek   = '" . mysqli_real_escape_string($db_connection, $_GET['fivek'])   . "', "; }
+		if (isset($_GET['result']))   { $query .= "result   = '" . mysqli_real_escape_string($db_connection, $_GET['result'])   . "', "; }
+		if (isset($_GET['score']))   { $query .= "score   = '" . mysqli_real_escape_string($db_connection, $_GET['score'])   . "', "; }
+		# Becareful if the comma that breaks up each value for the update/insert
 		if (isset($_GET['map_played'])) { $query .= "map_played = '" . mysqli_real_escape_string($db_connection, $_GET['map_played']) . "',";   }
 		if (isset($_GET['game'])) { $query .= "game = '" . mysqli_real_escape_string($db_connection, $_GET['game']) . "',";   }
 		if (isset($_GET['comment'])) { $query .= "comment = '" . mysqli_real_escape_string($db_connection, $_GET['comment']) . "'";   }

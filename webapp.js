@@ -12,6 +12,12 @@ $(document).ready(function(){
 		{ "data": "headshot",     "sClass": "integer" },
 		{ "data": "hpk",     "sClass": "integer" },
 		{ "data": "accuracy",     "sClass": "integer" },
+		{ "data": "twok",     "sClass": "integer" },
+		{ "data": "threek",     "sClass": "integer" },
+		{ "data": "fourk",     "sClass": "integer" },
+		{ "data": "fivek",     "sClass": "integer" },
+		{ "data": "result",     "sClass": "integer" },
+		{ "data": "score",     "sClass": "integer" },
 		{ "data": "map_played" },
 		{ "data": "game" },
 		{ "data": "comment" },
@@ -123,6 +129,12 @@ $(document).ready(function(){
 	$('#form_sensitivity #headshot').val('');
 	$('#form_sensitivity #hpk').val('');
 	$('#form_sensitivity #accuracy').val('');
+	$('#form_sensitivity #twok').val('');
+	$('#form_sensitivity #threek').val('');
+	$('#form_sensitivity #fourk').val('');
+	$('#form_sensitivity #fivek').val('');
+	$('#form_sensitivity #result').val('');
+	$('#form_sensitivity #score').val('');
 	$('#form_sensitivity #map_played').val('');
 	$('#form_sensitivity #game').val('');
 	$('#form_sensitivity #comment').val('');
@@ -196,6 +208,12 @@ $(document).ready(function(){
 		$('#form_sensitivity #headshot').val(output.data[0].headshot);
 		$('#form_sensitivity #hpk').val(output.data[0].hpk);
 		$('#form_sensitivity #accuracy').val(output.data[0].accuracy);
+		$('#form_sensitivity #twok').val(output.data[0].twok);
+		$('#form_sensitivity #threek').val(output.data[0].threek);
+		$('#form_sensitivity #fourk').val(output.data[0].fourk);
+		$('#form_sensitivity #fivek').val(output.data[0].fivek);
+		$('#form_sensitivity #result').val(output.data[0].result);
+		$('#form_sensitivity #score').val(output.data[0].score);
 		$('#form_sensitivity #map_played').val(output.data[0].map_played);
         $('#form_sensitivity #game').val(output.data[0].game);
 		$('#form_sensitivity #comment').val(output.data[0].comment);
