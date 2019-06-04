@@ -40,7 +40,7 @@ if ($job != ''){
   if ($job == 'get_sensitivities'){
  
     // Get sensitivities
-    $query = "SELECT * FROM sensitivities ORDER BY sensitivity_val";
+    $query = "SELECT * FROM sensitivities ORDER BY date_created";
     $query = mysqli_query($db_connection, $query);
     if (!$query){
       $result  = 'error';
@@ -61,7 +61,7 @@ if ($job != ''){
 			"kills"     => $sensitivity['kills'],
 			"deaths"    => $sensitivity['deaths'],
 			"headshot"    => $sensitivity['headshot'],
-			"hpk"    => $sensitivity['hpk'],
+			"hpk"    => round($sensitivity['hpk'], 3)*100,
 			"accuracy"    => $sensitivity['accuracy'],
 			"twok"    => $sensitivity['twok'],
 			"threek"    => $sensitivity['threek'],
@@ -120,13 +120,21 @@ if ($job != ''){
   } elseif ($job == 'add_sensitivity'){
     
     // Add sensitivity
+	//_To calculate the kpd
+	$kills		=$_GET['kills'];
+	$deaths		=$_GET['deaths'];
+	$kpd_total	=(float)$kills / (float)$deaths;
+	//_To calculate the hpk
+	$headshots	=$_GET['headshot'];
+	$hpk_total	= (float)$headshots / (float)$kills;
+	
     $query = "INSERT INTO sensitivities SET ";
     if (isset($_GET['sensitivity_val']))         { $query .= "sensitivity_val         = '" . mysqli_real_escape_string($db_connection, $_GET['sensitivity_val'])         . "', "; }
-    if (isset($_GET['kpd'])) { $query .= "kpd = '" . mysqli_real_escape_string($db_connection, $_GET['kpd']) . "', "; }
+	$query .= "kpd = '" . mysqli_real_escape_string($db_connection, $kpd_total) . "', ";
     if (isset($_GET['kills']))    { $query .= "kills    = '" . mysqli_real_escape_string($db_connection, $_GET['kills'])    . "', "; }
     if (isset($_GET['deaths']))   { $query .= "deaths   = '" . mysqli_real_escape_string($db_connection, $_GET['deaths'])   . "', "; }
 	if (isset($_GET['headshot']))   { $query .= "headshot   = '" . mysqli_real_escape_string($db_connection, $_GET['headshot'])   . "', "; }
-	if (isset($_GET['hpk']))   { $query .= "hpk   = '" . mysqli_real_escape_string($db_connection, $_GET['hpk'])   . "', "; }
+	$query .= "hpk   = '" . mysqli_real_escape_string($db_connection, $hpk_total)   . "', ";
 	if (isset($_GET['accuracy']))   { $query .= "accuracy   = '" . mysqli_real_escape_string($db_connection, $_GET['accuracy'])   . "', "; }
 	if (isset($_GET['twok']))   { $query .= "twok   = '" . mysqli_real_escape_string($db_connection, $_GET['twok'])   . "', "; }
 	if (isset($_GET['threek']))   { $query .= "threek   = '" . mysqli_real_escape_string($db_connection, $_GET['threek'])   . "', "; }

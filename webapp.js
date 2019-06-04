@@ -161,7 +161,7 @@ $(document).ready(function(){
       });
       request.done(function(output){
         if (output.result == 'success'){
-          // Reload datable
+          // Reload datatable
           table_sensitivities.api().ajax.reload(function(){
             hide_loading_message();
             var sensitivity_val = $('#sensitivity_val').val();

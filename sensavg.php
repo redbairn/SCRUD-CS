@@ -5,7 +5,9 @@
 
 		// Get average of sensitivities
 		// Round(AVG(column),X) sets the decimal point limit.
-		$query="SELECT ROUND(AVG(sensitivity_val),2) AS Average FROM sensitivities";
+		$query="SELECT ROUND(AVG(sensitivity_val),4) AS Average 
+				FROM sensitivities 
+				WHERE game='csgo'";
 		$query = mysqli_query($db_connection, $query);
 		if (!$query){
 		  $result  = 'error';

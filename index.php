@@ -12,6 +12,9 @@
     <script charset="utf-8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script charset="utf-8" src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script charset="utf-8" src="webapp.js"></script>
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   </head>
   <body>
 
@@ -19,17 +22,58 @@
 
       <h1>Sensitivities</h1>
 	  
+      <button type="button" class="button" id="add_sensitivity">Add sensitivity</button>
+	  <button type="button" class="button" id="show_winPercentage" ><p><a href="#ex1" rel="modal:open">Show Win_Percentage</a></p></button>
+	  <button type="button" class="button" id="show_averages" ><p><a href="#ex2" rel="modal:open">Show Averages</a></p></button>
 	  
-	<div class="arrow_box">
-		<h2 class="averages">Averages:</h2><br />
-		<h3 class="averages">Avg Sensitivity ( <?php include ('sensavg.php');?> )</h3><br />
-		<h3 class="averages" >Avg KPD ( <?php include ('kpdavg.php');?> )</h3><br />
-		<h3 class="averages" >Avg Headshot % ( <?php include ('hsavg.php');?> )</h3><br />
+	  <!-- Modal HTML embedded directly into document -->
+	<div id="ex1" class="modal">
+		<h1>The table below shows the Total Games, Wins, Draws, Losses and WinPercentage by Sensitivity Value.</h1>
+		<p><?php include ('winperc.php');?></p>
+		<a href="#" rel="modal:close"></a>
 	</div>
 	
-	
-
-      <button type="button" class="button" id="add_sensitivity">Add sensitivity</button>
+	<div id="ex2" class="modal">
+		<h1>Below you have statistics on the average sensitivity by HPK, KPD, etc.</h1>
+		<table id='averagesTbl' border='1'>
+		<tr>
+			<th><strong>Overall<sup>1</sup></strong></th>
+			<th><strong>Sens @ 33% HPK<sup>2</sup></strong></th>
+			<th><strong>Sens @ 40% HPK</strong></th>
+			<th><strong>Sens @ 50% HPK</strong></th>
+			<th><strong>Sens @ 60% HPK</strong></th>
+			<th><strong>KPD</strong></th>
+			<th><strong>HS %</strong></th>
+			<th><strong>KPD Min 1.0</strong></th>
+			<th><strong>2K</strong></th>
+			<th><strong>3K</strong></th>
+			<th><strong>4K</strong></th>
+		
+			</tr>
+			<tr>
+			<td><?php include ('sensavg.php');?></td>
+			<td><?php include ('topavg.php');	echo $sens0;echo $sens1;echo $sens2;echo $sens3;?></td>
+			<td><?php include ('topavg2.php'); echo $sens2;?></td>
+			<td><?php include ('topavg3.php'); echo $sens3;?></td>
+			<td><?php include ('topavg4.php'); echo $sens4;?></td>
+			<td><?php include ('kpdavg.php');?></td>
+			<td><?php include ('hsavg.php');?></td>
+			<td><?php include ('avgsensbykpd.php'); echo $AvgSensKPD1;?></td>
+			<td><?php include ('avgby2k.php'); echo $sens2k;?></td>
+			<td><?php include ('avgby2k.php'); echo $sens3k;?></td>
+			<td><?php include ('avgby2k.php'); echo $sens4k;?></td>
+			</tr>
+		</table>
+		<div class="note">
+			<ol>
+				<li>This is the overall average of the 33%, 40%, 50% and 60% HPK.</li>
+				<li>The hpk is greater than 33% and the kpd is greater than 1.0</li>
+			</ol>
+		</div>
+		<a href="#" rel="modal:close"></a>
+	</div>
+	  
+	  
 
       <table class="datatable" id="table_sensitivities">
         <thead>
@@ -76,12 +120,6 @@
             </div>
           </div>
           <div class="input_container">
-            <label for="kpd">Kills Per Death: <span class="required">*</span></label>
-            <div class="field_container">
-              <input type="number" class="text" name="kpd" id="kpd" value="" min="0" max="50" step="0.01" required>
-            </div>
-          </div>
-          <div class="input_container">
             <label for="kills">Kills: <span class="required">*</span></label>
             <div class="field_container">
               <input type="number" class="text" name="kills" id="kills" value="" min="0" max="200" step="1" required>
@@ -97,12 +135,6 @@
             <label for="headshot">Headshot: <span class="required">*</span></label>
             <div class="field_container">
               <input type="number" class="text" name="headshot" id="headshot" value="" min="0" max="200" pattern="\d*" maxlength="3" required>
-            </div>
-          </div>
-		  <div class="input_container">
-            <label for="hpk">HPK (%): <span class="required">*</span></label>
-            <div class="field_container">
-              <input type="number" class="text" name="hpk" id="hpk" value="" min="0" max="100" pattern="\d*" maxlength="3" required>
             </div>
           </div>
 		   <div class="input_container">
@@ -141,6 +173,7 @@
 			<div class="field_container">
 				<select name="result" class="text" id="result" value="" required>
 					<option value="win">Win</option>
+					<option value="draw">Draw</option>
 					<option value="loss">Loss</option>
 				</select>
 			</div>
@@ -155,14 +188,14 @@
  		  <div class="input_container">
             <label for="map_played">Map: <span class="required">*</span></label>
 			<div class="field_container">
-				<select name="map_played" class="text" id="map_played" value="" required>
+				<select name="map_played" class="text" id="map_played" required>
 					<option value="AUSTRIA">Austria</option>
 					<option value="AZTEC">Aztec</option>
-					<option value="CACHE">Cache</option>
+					<option value="CACHE" selected>Cache</option>
 					<option value="CANALS">Canals</option>
 					<option value="CBBLE">Cobblestone</option>
-					<option value="DUST" selected="selected">Dust</option>
-					<option value="DUST2" selected="selected">Dust2</option>
+					<option value="DUST">Dust</option>
+					<option value="DUST2">Dust2</option>
 					<option value="INFERNO">Inferno</option>
 					<option value="MIRAGE">Mirage</option>
 					<option value="NUKE">Nuke</option>
@@ -217,6 +250,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
