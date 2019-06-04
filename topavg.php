@@ -35,8 +35,8 @@
 				$message = 'query success';  
 				$sensitivities = array();
 				while ($sensitivity = mysqli_fetch_array($x)){
-					/* echo $sensitivity['Top25kpd1']; */
-					$sensitivities[] = $sensitivity;
+					echo $sensitivity['Top25kpd1'];
+					/* $sensitivities[] = $sensitivity;
 				
 					foreach ($sensitivities as $row) 
 					{ 
@@ -46,7 +46,7 @@
 							$$sens=$row[0];
 						}
 
-					}
+					} */
 					
 					
 				}
