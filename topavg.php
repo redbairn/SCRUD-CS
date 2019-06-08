@@ -5,54 +5,128 @@
 
 		// Get average of sensitivities
 		// Round(AVG(column),X) sets the decimal point limit.
-		// REmoved the LIMIT 25 in the selection
-		$sensitivity = array("query"=>"33", "query1"=>"40", "query2"=>"50", "query3"=>"60");
-		$sizeOf = sizeof($sensitivity); 
-		
-		foreach($sensitivity as $x => $x_value) {
-			/* echo $x_value;
-			echo $x;
-			echo "Key=" . $x . ", Value=" . $x_value; */
-			for($counter = 0; $counter < $sizeOf; $counter++){
-				$x="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd1
+		// Removed the LIMIT 25 in the selection
+		/* $hspercent = array("33", "40", "50","60");
+		foreach($hspercent as $x => $x_value) {
+			$query="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd1
+				FROM 
+				(SELECT sensitivity_val
+				FROM sensitivities
+				WHERE hpk > '". $x_value . "'
+				AND kpd > '1.0'
+				AND game = 'csgo'
+				ORDER BY hpk DESC) sensitivities";
+
+			
+		}/*End of Foreach*/
+				/*$q = mysqli_query($db_connection, $query);
+				if (!$q){
+				  $result  = 'error';
+				  $message = 'query error'; 
+				  echo $result;
+				  echo $message;
+				}else{
+					$result  = 'success';
+					$message = 'query success'; 
+					$sensitivities = array();
+					while ($sensitivity = mysqli_fetch_array($q)){
+						/* echo $sensitivity['Top25kpd1']; 
+	
+					}	 
+
+				} */
+	
+	
+		$query="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd2
 					FROM 
 					(SELECT sensitivity_val
 					FROM sensitivities
-					WHERE hpk > '". $x_value . "'
+					WHERE hpk > '33'
 					AND kpd > '1.0'
-					AND game = 'csgo'
-					ORDER BY hpk DESC) sensitivities";
+					AND game = 'csgo') sensitivities";
+		
+		$query = mysqli_query($db_connection, $query);
+		if (!$query){
+		  $result  = 'error';
+		  $message = 'query error'; 
+		  echo $result;
+		  echo $message;
+		} else {
+			$result  = 'success';
+			$message = 'query success';  
+			while ($sensitivity = mysqli_fetch_array($query)){
+				$sens0=$sensitivity['Top25kpd2'];
 			}
-	
-			$x = mysqli_query($db_connection, $x);
-			if (!$x){
-			  $result  = 'error';
-			  $message = 'query error'; 
-			  echo $result;
-			  echo $message;
-			} else {
-				$result  = 'success';
-				$message = 'query success';  
-				$sensitivities = array();
-				while ($sensitivity = mysqli_fetch_array($x)){
-					echo $sensitivity['Top25kpd1'];
-					/* $sensitivities[] = $sensitivity;
-				
-					foreach ($sensitivities as $row) 
-					{ 
-						for($counter = 0; $counter < 4; $counter++){
-							$sens = 'sens'.$counter;
-							echo 'Sens= '.$$sens;
-							$$sens=$row[0];
-						}
-
-					} */
-					
-					
-				}
+		}	
+		
+		
+		
+		$query="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd2
+			FROM 
+			(SELECT sensitivity_val
+			FROM sensitivities
+			WHERE hpk > '40'
+			AND kpd > '1.0'
+			AND game = 'csgo') sensitivities";
+		
+		$query = mysqli_query($db_connection, $query);
+		if (!$query){
+		  $result  = 'error';
+		  $message = 'query error'; 
+		  echo $result;
+		  echo $message;
+		} else {
+			$result  = 'success';
+			$message = 'query success';  
+			while ($sensitivity = mysqli_fetch_array($query)){
+				$sens1=$sensitivity['Top25kpd2'];
 			}
-		}/*End of Foreach*/
-
+		}	
+		
+		$query="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd2
+			FROM 
+			(SELECT sensitivity_val
+			FROM sensitivities
+			WHERE hpk > '50'
+			AND kpd > '1.0'
+			AND game = 'csgo') sensitivities";
+		
+		$query = mysqli_query($db_connection, $query);
+		if (!$query){
+		  $result  = 'error';
+		  $message = 'query error'; 
+		  echo $result;
+		  echo $message;
+		} else {
+			$result  = 'success';
+			$message = 'query success';  
+			while ($sensitivity = mysqli_fetch_array($query)){
+				$sens2=$sensitivity['Top25kpd2'];
+			}
+		}
+		
+		$query="SELECT ROUND(AVG(sensitivity_val),4) as Top25kpd2
+			FROM 
+			(SELECT sensitivity_val
+			FROM sensitivities
+			WHERE hpk > '60'
+			AND kpd > '1.0'
+			AND game = 'csgo') sensitivities";
+		
+		$query = mysqli_query($db_connection, $query);
+		if (!$query){
+		  $result  = 'error';
+		  $message = 'query error'; 
+		  echo $result;
+		  echo $message;
+		} else {
+			$result  = 'success';
+			$message = 'query success';  
+			while ($sensitivity = mysqli_fetch_array($query)){
+				$sens3=$sensitivity['Top25kpd2'];
+			}
+		}
+		
 		
 		?>
 		

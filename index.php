@@ -51,11 +51,11 @@
 		
 			</tr>
 			<tr>
-			<td><?php include ('sensavg.php');?></td>
-			<td><?php include ('topavg.php');	/* echo $sens0;echo $sens1;echo $sens2;echo $sens3; */?></td>
-			<td><?php include ('topavg2.php'); echo $sens2;?></td>
-			<td><?php include ('topavg3.php'); echo $sens3;?></td>
-			<td><?php include ('topavg4.php'); echo $sens4;?></td>
+			<td><?php include ('overall.php');?></td>
+			<td><?php include ('topavg.php');echo $sens0;?></td>
+			<td><?php include ('topavg.php'); echo $sens1;?></td>
+			<td><?php include ('topavg.php'); echo $sens2;?></td>
+			<td><?php include ('topavg.php'); echo $sens3;?></td>
 			<td><?php include ('kpdavg.php');?></td>
 			<td><?php include ('hsavg.php');?></td>
 			<td><?php include ('avgsensbykpd.php'); echo $AvgSensKPD1;?></td>
